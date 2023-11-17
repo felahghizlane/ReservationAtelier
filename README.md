@@ -5,7 +5,7 @@ Objectifs :
 Appliquer les principes de l'architecture MVC.
 Utiliser Spring Boot pour construire l'application.
 Intégrer Spring Data JPA avec MySQL pour les opérations sur la base de données.
-Créer des interfaces utilisateur dynamiques avec Thymeleaf sans interaction JavaScript complexe.
+Créer des interfaces utilisateur dynamiques avec Thymeleaf.
 
 Phases de Développement : 
 Phase 1: Initialisation du Projet
@@ -13,7 +13,11 @@ Génération d'un projet Spring Boot avec Spring Initializr incluant Spring Web,
 Phase 2: Configuration de l'Environnement de Développement
 Configuration de l'IDE et du fichier application.properties pour la connexion à MySQL.
 Création d'une base de données via MySQL Workbench.
-Phase 3: Création de la Base de Données et Modélisation des Entités JPA
+Phase 3: Création de la Base de Données
+Mysql:
+Veuillez acceder a ce fichier pour la creation de la base de donnee
+src\main\resources\Dump20231116.sql 
+Modélisation des Entités JPA
 Définition des entités JPA nécessaires : Atelier, Artisan, Participant, Réservation.
 Phase 4: Développement du Back-end
 Implémentation des repositories JPA pour chaque entité.
@@ -27,9 +31,6 @@ Validation des fonctionnalités et de la réponse aux actions de l'utilisateur.
 Implémentation de la validation des données côté serveur.
 Phase 7: Préparation pour le Déploiement
 Préparation de l'application pour la génération d'un fichier WAR exécutable.
-
-Mysql:
-
 
 Pour afficher la liste des ateliers : 
 http://localhost:8080/ateliers
