@@ -14,7 +14,8 @@ Phase 2: Configuration de l'Environnement de Développement
 Configuration de l'IDE et du fichier application.properties pour la connexion à MySQL.
 Création d'une base de données via MySQL Workbench.
 Phase 3: Création de la Base de Données
-Mysql:
+
+Traitememnt donnees dans Mysql:
 Veuillez acceder a ce fichier pour la creation de la base de donnee
 src\main\resources\Dump20231116.sql 
 Modélisation des Entités JPA
