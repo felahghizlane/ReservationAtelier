@@ -21,7 +21,6 @@ public class ArtisanController {
 
     @GetMapping
     public String listArtisan(Model model) {
-        // Logic to get artisan
         return "artisans"; // Nom du template Thymeleaf
     }
 }

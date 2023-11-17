@@ -26,7 +26,7 @@ public class Atelier {
     @JoinColumn(name = "artisan_id")
     private Artisan artisan;
     
-    ///////////////////Constructeurs 
+    ///////////////////Constructeurs ///////////////////
 	public Atelier() {
 	}
 		
