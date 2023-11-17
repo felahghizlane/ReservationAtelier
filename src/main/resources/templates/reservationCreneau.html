@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Créneaux</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #e9e9e9;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button {
+            background: #5cb85c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+ <form th:action="@{/reserve}" method="post">
+        <!-- Sélection de l'atelier -->
+        <select id="atelierSelect" th:name="atelierId" onchange="loadCreneaux()">
+		    <option>
+		        Choisir un atelier
+		    </option>
+		    <option th:each="atelier : ${ateliers}" 
+		            th:value="${atelier.id}" 
+		            th:text="${atelier.nom}">
+		        Nom de l'Atelier
+		    </option>
+		</select>
+
+        <!-- Sélection du créneau -->
+        <select th:name="creneauId" id="creneauSelect">
+            <option th:each="creneau : ${creneaux}" 
+                    th:value="${creneau.id}" 
+                    th:text="${creneau.dateHeureDebut} + ' - ' + ${creneau.dateHeureFin}">
+                Date et Heure du Créneau
+            </option>
+        </select>
+
+        <!-- Sélection du participant -->
+        <select th:name="participantId">
+            <option th:each="participant : ${participants}" 
+                    th:value="${participant.id}" 
+                    th:text="${participant.nom}">
+                Nom du Participant
+            </option>
+        </select>
+
+        <button type="submit">Réserver</button>
+        <!-- Affichage des messages d'erreur -->
+        <div th:if="${error}">
+            <p th:text="${error}"></p>
+        </div>
+ </form>
+    
+    
+<script>
+	function loadCreneaux() {
+	    var atelierId = document.getElementById('atelierSelect').value;
+	    // Envoyer une requête AJAX au serveur
+	    fetch('/creneaux-disponibles/' + atelierId)
+	        .then(response => response.json())
+	        .then(data => {
+	            // Mettre à jour le menu déroulant des créneaux
+	            var creneauSelect = document.getElementById('creneauSelect');
+	            creneauSelect.innerHTML = '';
+	            data.forEach(creneau => {
+	                var option = document.createElement('option');
+	                option.value = creneau.id;
+	                option.textContent = creneau.dateHeureDebut + ' - ' + creneau.dateHeureFin;
+	                
+	                creneauSelect.appendChild(option);
+	            });
+	        });
+	}
+</script>
+
+</body>
+</html>

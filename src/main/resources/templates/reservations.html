@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des réservations</title>
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #e9e9e9;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        button {
+            background: #5cb85c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des réservations</h1>
+    <div>
+        <ul>
+            <li th:each="reservation : ${reservations}">
+                <form th:action="@{/supprimer}" method="post">
+                    <input type="hidden" name="reservationId" th:value="${reservation.id}" />
+                    <span th:text="${reservation.participant}">Participant</span> -
+                    <span th:text="${reservation.atelier}">Atelier</span> -
+                    <span th:text="${reservation.dateHeureDebut}">Date Heure Début</span> -
+                    <span th:text="${reservation.dateReservation}">Date Réservation</span>
+                    <button type="submit">Supprimer</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <!-- Affichage des messages d'erreur -->
+    <div th:if="${error}">
+        <p th:text="${error}"></p>
+    </div>
+</body>
+</html>
